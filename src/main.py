@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def retriever(question:str):
+def retriever(question:str, bot: str):
     # Load and preprocess
     # file_path = ""
     # documents = load_documents(file_path)
@@ -28,10 +28,10 @@ def retriever(question:str):
     
     return answer
 
-def main():
-    question = "What are the documents uploaded in the database?"
-    answer = retriever(question)
-    print(answer)
+# def main():
+#     question = "What are the documents uploaded in the database?"
+#     answer = retriever(question, 'bot')
+#     print(answer)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

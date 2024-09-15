@@ -19,7 +19,7 @@ from langchain.embeddings import HuggingFaceEmbeddings
 
 load_dotenv()
 
-def retrieve_answer_from_docs(question: str):
+def retrieve_answer_from_docs(question: str, bot: str):
     """
     Retrieve the answer to a question from the documents.
 
