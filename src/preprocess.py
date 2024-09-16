@@ -106,11 +106,11 @@ def split_documents(documents: list, chunk_size: int = 1500, chunk_overlap: int 
         raise CustomException(e, sys)
     
     
-if __name__ == "__main__":
-    directory = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/Rules_and_Policies"
-    directory_path = os.path.join(project_root, directory)
-    documents = load_documents(directory_path)
-    texts = split_documents(documents)
+# if __name__ == "__main__":
+#     directory = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/Rules_and_Policies"
+#     directory_path = os.path.join(project_root, directory)
+#     documents = load_documents(directory_path)
+#     texts = split_documents(documents)
     
     # print('*' * 60)
     # print(len(texts))

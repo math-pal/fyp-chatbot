@@ -25,18 +25,28 @@ def store_documents_to_qdrant(texts: list):
         Qdrant: Qdrant vector store instance.
     """
     try:
-        qdrant_end = os.getenv('QDRANT_URL')
+        qdrant_url = os.getenv('QDRANT_URL')
         qdrant_api_key = os.getenv('QDRANT_API_KEY')
                 
         embeddings_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
+        # qdrant_client = QdrantClient(
+        #     url = qdrant_url,
+        #     api_key = qdrant_api_key
+        #     )
+        
+        collection_name = "university-rules-chatbot"
+
+        # # Get all collections
+        # collections = qdrant_client.get_collections()
+
         qdrant = Qdrant.from_documents(
             texts,
             embeddings_model,
-            url=qdrant_end,
+            url=qdrant_url,
             prefer_grpc=True,
             api_key=qdrant_api_key,
-            collection_name="university-rules-chatbot",
+            collection_name=collection_name,
             quantization_config=models.BinaryQuantization(
                 binary=models.BinaryQuantizationConfig(
                     always_ram=True,

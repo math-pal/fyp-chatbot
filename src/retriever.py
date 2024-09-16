@@ -69,7 +69,9 @@ def retrieve_answer_from_docs(question: str, history=None):  # qdrant
         )
         
         embeddings_model = HuggingFaceEmbeddings(model_name = "all-MiniLM-L6-v2")        
-        qdrant_client = QdrantClient(url=os.getenv('QDRANT_URL'), api_key=os.getenv('QDRANT_API_KEY'))
+        qdrant_client = QdrantClient(
+            url=os.getenv('QDRANT_URL'), 
+            api_key=os.getenv('QDRANT_API_KEY'))
 
         qdrant = Qdrant(
             client=qdrant_client, 

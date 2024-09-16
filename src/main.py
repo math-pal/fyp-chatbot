@@ -15,13 +15,18 @@ load_dotenv()
 
 def retriever(question:str, history=None):
     # # Load and preprocess
-    # directory = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/Rules_and_Policies"
-    # directory_path = os.path.join(project_root, directory)
-    # documents = load_documents(directory_path)
-    # texts = split_documents(documents)
+    directory = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/Rules_and_Policies"
+    directory_path = os.path.join(project_root, directory)
+    documents = load_documents(directory_path)
+    texts = split_documents(documents)
     
-    # # Index
-    # qdrant = store_documents_to_qdrant(texts)
+    print('*' * 60)
+    print(len(texts))
+    print(len(documents))
+    print('*' * 60)
+
+    # Index
+    qdrant = store_documents_to_qdrant(texts)
 
     
     # Retrieve
