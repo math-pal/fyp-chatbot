@@ -1,6 +1,7 @@
 import os
 import sys
-sys.path.append("E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/fyp-chatbot")
+project_root = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/fyp-chatbot"
+sys.path.append(project_root)
 from src.preprocess import load_documents, split_documents
 from src.index import store_documents_to_qdrant
 # from langchain_openai import OpenAIEmbeddings
@@ -12,18 +13,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def retriever(question:str, bot: str):
-    # Load and preprocess
-    # file_path = ""
-    # documents = load_documents(file_path)
+def retriever(question:str, history=None):
+    # # Load and preprocess
+    # directory = "E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/Rules_and_Policies"
+    # directory_path = os.path.join(project_root, directory)
+    # documents = load_documents(directory_path)
     # texts = split_documents(documents)
     
-    # Index
+    # # Index
     # qdrant = store_documents_to_qdrant(texts)
 
     
     # Retrieve
-    question = "What are the documents uploaded in the database?"
+    # question = "What are the documents uploaded in the database?"
     answer = retrieve_answer_from_docs(question)
     
     return answer

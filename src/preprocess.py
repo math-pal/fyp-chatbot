@@ -111,4 +111,8 @@ if __name__ == "__main__":
     directory_path = os.path.join(project_root, directory)
     documents = load_documents(directory_path)
     texts = split_documents(documents)
+    
+    # print('*' * 60)
     # print(len(texts))
+    # print(len(documents))
+    # print('*' * 60)
