@@ -47,10 +47,13 @@ def load_documents(directory_path: str):
 
             # Handling text files (.txt)
             if filename.endswith(".txt"):
-                with open(file_path, "r") as file:
-                    content = file.read()
-                    doc = Document(page_content=content, metadata={"filename": filename})
-                    documents.append(doc)
+                try:
+                    with open(file_path, "r", encoding="utf-8") as file:
+                        content = file.read()
+                        doc = Document(page_content=content, metadata={"filename": filename})
+                        documents.append(doc)
+                except UnicodeDecodeError as e:
+                    logger.error(f"Error decoding {filename}: {e}")
 
             # Handling Word documents (.docx)
             elif filename.endswith(".docx"):

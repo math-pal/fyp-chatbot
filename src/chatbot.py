@@ -3,8 +3,8 @@ import gradio as gr
 import sys
 sys.path.append("E:/Training/Atomcamp/DS6_Bootcamp/Projects/FYP/fyp-chatbot")
 import gradio as gr
-from src.main import retriever
-# from src.retriever import retrieve_answer_from_docs
+# from src.main import retriever
+from src.retriever import retrieve_answer_from_docs
 
 # Create the chatbot interface
 def create_chat_interface():
@@ -19,7 +19,7 @@ def create_chat_interface():
 
     # Create Gradio interface
     interface = gr.ChatInterface(
-        fn=retriever,  # Function that takes question and history  #  retrieve_answer_from_docs  
+        fn=retrieve_answer_from_docs,  # Function that takes question and history  #  retrieve_answer_from_docs  
         chatbot=chatbot,
         title="university-rules-chatbot",
         description="Ask any question related to Karakoram International University Gilgit-Baltistan.",

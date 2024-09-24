@@ -1,6 +1,8 @@
 ####################################################
 # I think this module is extra
 ####################################################
+import time
+# import random
 import os
 import sys
 from dotenv import load_dotenv
@@ -13,6 +15,7 @@ from custom_logging import logger
 from custom_exception import CustomException
 
 load_dotenv()
+
 
 def store_documents_to_qdrant(texts: list):
     """
@@ -30,29 +33,37 @@ def store_documents_to_qdrant(texts: list):
                 
         embeddings_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-        # qdrant_client = QdrantClient(
-        #     url = qdrant_url,
-        #     api_key = qdrant_api_key
-        #     )
+        qdrant_client = QdrantClient(
+            url = qdrant_url,
+            api_key = qdrant_api_key
+            )
         
         collection_name = "university-rules-chatbot"
 
-        # # Get all collections
-        # collections = qdrant_client.get_collections()
+        # Check if the collection already exists
+        collections = qdrant_client.get_collections()
 
-        qdrant = Qdrant.from_documents(
-            texts,
-            embeddings_model,
-            url=qdrant_url,
-            prefer_grpc=True,
-            api_key=qdrant_api_key,
-            collection_name=collection_name,
-            quantization_config=models.BinaryQuantization(
-                binary=models.BinaryQuantizationConfig(
-                    always_ram=True,
-                ),
+        collection_names = [collection.name for collection in collections.collections]
+
+        if collection_name in collection_names:
+            print("The collection already exists.")
+        else:
+            # Create the collection if it doesn't exist
+            qdrant = Qdrant.from_documents(
+                texts,
+                embeddings_model,
+                url=qdrant_url,
+                prefer_grpc=True,
+                api_key=qdrant_api_key,
+                collection_name=collection_name,
+                quantization_config=models.BinaryQuantization(
+                    binary=models.BinaryQuantizationConfig(
+                        always_ram=True,
+                    ),
+                )
             )
-        )
+
+        print(f"Collection '{collection_name}' has been created.")
         
         logger.info("Documents stored in Qdrant successfully")
 
